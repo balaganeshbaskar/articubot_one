@@ -52,6 +52,10 @@
     </xacro:inertial_cylinder>
   </link>
 
+  <gazebo reference="link_1">
+    <material>Gazebo/black</material>
+  </gazebo>
+
   <!-- ARM 1 (500mm) -->
   <joint name="shoulder" type="revolute">
     <parent link="link_1"/>
@@ -79,6 +83,10 @@
         <origin xyz="0 0 0.25" rpy="0 0 0"/>
     </xacro:inertial_cylinder>
   </link>
+
+  <gazebo reference="upper_arm">
+    <material>Gazebo/blue</material>
+  </gazebo>
 
   <!-- ARM 2 (400mm) -->
   <joint name="elbow" type="revolute">
@@ -108,6 +116,10 @@
     </xacro:inertial_cylinder>
   </link>
 
+  <gazebo reference="fore_arm">
+    <material>Gazebo/gray</material>
+  </gazebo>
+
   <!-- ARM 3 (100mm) -->
   <joint name="wrist" type="revolute">
     <parent link="fore_arm"/>
@@ -136,6 +148,10 @@
     </xacro:inertial_cylinder>
   </link>
 
+  <gazebo reference="hand">
+    <material>Gazebo/white</material>
+  </gazebo>
+
   <!-- END EFFECTOR (360-degree rotation) -->
   <joint name="joint_end_effector" type="continuous">
     <parent link="hand"/>
@@ -162,5 +178,9 @@
         <origin xyz="0 0 0.05" rpy="0 0 0"/>
     </xacro:inertial_cylinder>
   </link>
+
+  <gazebo reference="fingers">
+    <material>Gazebo/orange</material>
+  </gazebo>
  
 </robot>

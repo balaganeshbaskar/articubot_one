@@ -3,7 +3,9 @@
 
   <!-- Gazebo ROS Control Plugin -->
   <gazebo>
-    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so"/>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
   </gazebo>
 
   <!-- Transmission and Controller Interfaces for Each Joint -->
@@ -26,5 +28,27 @@
   <xacro:transmission_interface joint_name="elbow"/>
   <xacro:transmission_interface joint_name="wrist"/>
   <xacro:transmission_interface joint_name="joint_end_effector"/>
+
+  <!-- Optional: Add physics parameters for each joint link -->
+  <gazebo reference="base_link">
+    <kp>100.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="shoulder_link">
+    <kp>100.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="elbow_link">
+    <kp>100.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="wrist_link">
+    <kp>100.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="end_effector_link">
+    <kp>100.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
 
 </robot>
