@@ -3,7 +3,9 @@
 
   <!-- Gazebo ROS Control Plugin -->
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_factory.so">
+    <!-- <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"> -->
+
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>

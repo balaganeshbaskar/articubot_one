@@ -4,24 +4,26 @@ from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitut
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import FindExecutable
-from launch_ros.parameter_descriptions import ParameterValue  # ADD THIS
-
+from launch_ros.parameter_descriptions import ParameterValue  # ✅ add this
 
 def generate_launch_description():
-
     use_sim_time = LaunchConfiguration('use_sim_time')
 
-    # Dynamically build robot_description from xacro
-    robot_description_content = ParameterValue(  # FIX HERE
-        Command([
-            PathJoinSubstitution([FindExecutable(name='xacro')]),
-            ' ',
-            PathJoinSubstitution([FindPackageShare("articubot_one"), "description", "robot.urdf.xacro"])
-        ]),
-        value_type=str
-    )
+    xacro_file = PathJoinSubstitution([
+        FindPackageShare("articubot_one"),
+        "description",
+        "robot.urdf.xacro"
+    ])
 
-    robot_description = {"robot_description": robot_description_content}
+    robot_description_content = Command([
+        PathJoinSubstitution([FindExecutable(name='xacro')]),
+        ' ',
+        xacro_file
+    ])
+
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)  # ✅ fix
+    }
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
